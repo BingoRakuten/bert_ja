@@ -14,8 +14,6 @@ python create_pretraining_data.py \
   --dupe_factor=5
 
 
-export BERT_BASE_DIR=/root/work/uncased_L-12_H-768_A-12
-
 python run_pretraining.py \
        --input_file=/root/work/tf_examples.tfrecord \
        --output_dir=/root/work/pretraining_output \
