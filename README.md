@@ -2,8 +2,8 @@
 
 original version is this: https://github.com/google-research/bert
 
-First, I needed to apply them for Japanese sentences, so I prepared a data called JAS.
-And then, I just replaced ```run_classifier.py``` and add some lines, like this:
+First, I needed to apply them for Japanese sentences, so prepared a data called JAS.
+And then, just replaced ```run_classifier.py``` and add some lines:
 
 ```python
 class JasProcessor(DataProcessor):
@@ -45,10 +45,7 @@ class JasProcessor(DataProcessor):
     return examples
 ```
 
-
-and then, ran it.
-
-The result is this:
+and then, ran it. The result:
 
 ```
 eval_accuracy = 0.363
@@ -57,24 +54,25 @@ global_step = 937
 loss = 1.5512451
 ```
 
-it's not so good, I think. I don't have baseline model about that, but char-based 1D CNN was better.
+It's not so good. I don't have baseline model about that, but char-based 1D CNN was better.
+
 https://qiita.com/sugiyamath/items/7cabef39390c4a07e4d8
 
 
 # vocab.txt for MeCab
 
-I wanted to create vocabulary for MeCab, so fixed tokenization.py
+I fixed tokenization.py for MeCab vocaburaly.
 https://github.com/sugiyamath/bert/blob/master/tokenization.py
 
 fixed lines: 159, 211-219
 
-I disabled "text normalization" and "charcter based tokenization for chinese characters", because I wanted to increase vocabulary for Japanese language.
+Next, disabled "text normalization" and "charcter based tokenization for chinese characters", because wanna increase vocabulary for Japanese language.
 
-And then, I created ```pre_example.sh``` and ran it.
+And then, created ```pre_example.sh``` .
 https://github.com/sugiyamath/bert/blob/master/pre_example.sh
 
-create_pretraining_data.py seemed to success, but run_pretraining.py was failed because of OOM.
-So that, I reduced model's network size like this:
+```create_pretraining_data.py``` seemed to success, but ```run_pretraining.py``` was failed because of OOM.
+so reduced model's network size:
 
 ```python
 {
