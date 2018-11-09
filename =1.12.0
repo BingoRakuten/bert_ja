@@ -1,0 +1,58 @@
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /opt/conda
+
+  added / updated specs: 
+    - tensorflow-gpu
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    tensorboard-1.9.0          |   py36hf484d3e_0         3.3 MB
+    gast-0.2.0                 |           py36_0          15 KB
+    protobuf-3.6.0             |   py36hf484d3e_0         610 KB
+    tensorflow-base-1.9.0      |gpu_py36h6ecc378_0       170.8 MB
+    termcolor-1.1.0            |           py36_1           7 KB
+    libprotobuf-3.6.0          |       hdbcaa40_0         4.1 MB
+    cupti-9.0.176              |                0         1.6 MB
+    astor-0.7.1                |           py36_0          43 KB
+    _tflow_190_select-0.0.1    |              gpu           2 KB
+    cudatoolkit-9.0            |       h13b8566_0       340.4 MB
+    grpcio-1.12.1              |   py36hdbcaa40_0         1.7 MB
+    tensorflow-1.9.0           |gpu_py36h02c5d5e_1           3 KB
+    tensorflow-gpu-1.9.0       |       hf154084_0           2 KB
+    cudnn-7.1.2                |        cuda9.0_0       367.8 MB
+    conda-4.5.11               |           py36_0         1.0 MB
+    markdown-3.0.1             |           py36_0         107 KB
+    absl-py-0.6.1              |           py36_0         152 KB
+    ------------------------------------------------------------
+                                           Total:       891.7 MB
+
+The following NEW packages will be INSTALLED:
+
+    _tflow_190_select: 0.0.1-gpu               
+    absl-py:           0.6.1-py36_0            
+    astor:             0.7.1-py36_0            
+    cudatoolkit:       9.0-h13b8566_0          
+    cudnn:             7.1.2-cuda9.0_0         
+    cupti:             9.0.176-0               
+    gast:              0.2.0-py36_0            
+    grpcio:            1.12.1-py36hdbcaa40_0   
+    libprotobuf:       3.6.0-hdbcaa40_0        
+    markdown:          3.0.1-py36_0            
+    protobuf:          3.6.0-py36hf484d3e_0    
+    tensorboard:       1.9.0-py36hf484d3e_0    
+    tensorflow:        1.9.0-gpu_py36h02c5d5e_1
+    tensorflow-base:   1.9.0-gpu_py36h6ecc378_0
+    tensorflow-gpu:    1.9.0-hf154084_0        
+    termcolor:         1.1.0-py36_1            
+
+The following packages will be UPDATED:
+
+    conda:             4.5.4-py36_0             --> 4.5.11-py36_0
+
+Proceed ([y]/n)? 
