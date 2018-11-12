@@ -8,7 +8,7 @@ if [ -f $FILE ]; then
     echo "FILE EXISTS"
 else
     python create_pretraining_data.py \
-	   --input_file=/root/work/data/splitted_1.txt \
+	   --input_file=/root/work/data/jawiki_splitted.txt \
 	   --output_file=/root/work/tf_examples.tfrecord \
 	   --vocab_file=$BERT_BASE_DIR/vocab.txt \
 	   --do_lower_case=True \
