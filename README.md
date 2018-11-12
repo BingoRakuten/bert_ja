@@ -59,37 +59,15 @@ It's not so good. I don't have baseline model about that, but char-based 1D CNN 
 https://qiita.com/sugiyamath/items/7cabef39390c4a07e4d8
 
 
-# vocab.txt for MeCab
+# vocab.txt for sentencepiece
 
-I fixed tokenization.py for MeCab vocaburaly.
+I fixed tokenization.py for sentencepiece vocaburaly.
 https://github.com/sugiyamath/bert/blob/master/tokenization.py
 
 fixed lines: 159, 211-219
 
-Next, disabled "text normalization" and "charcter based tokenization for chinese characters", because wanna increase vocabulary for Japanese language.
+it disabled "text normalization" and "charcter based tokenization for chinese characters", because wanna increase vocabulary for Japanese language.
 
 And then, created ```pre_example.sh``` .
 https://github.com/sugiyamath/bert/blob/master/pre_example.sh
 
-```create_pretraining_data.py``` seemed to success, but ```run_pretraining.py``` was failed because of OOM.
-so reduced model's network size:
-
-```python
-{
-  "attention_probs_dropout_prob": 0.1,
-  "hidden_act": "gelu",
-  "hidden_dropout_prob": 0.1,
-  "hidden_size": 768,
-  "initializer_range": 0.02,
-  "intermediate_size": 3072,
-  "max_position_embeddings": 512,
-  "num_attention_heads": 6,
-  "num_hidden_layers": 6,
-  "type_vocab_size": 2,
-  "vocab_size": 1710509
-}
-```
-
-and ran again.
-
-Finally, my computer freezed. HELP ME!
