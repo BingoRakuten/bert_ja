@@ -54,9 +54,8 @@ global_step = 937
 loss = 1.5512451
 ```
 
-It's not so good. I don't have baseline model about that, but char-based 1D CNN was better.
-
-https://qiita.com/sugiyamath/items/7cabef39390c4a07e4d8
+it's nice because its data size isn't so large.
+The baseline model ```JAS_old/run.py``` is lower (acc: 0.333).
 
 
 # vocab.txt for sentencepiece
