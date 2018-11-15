@@ -1,6 +1,8 @@
 from subprocess import check_output
 import os
 from tqdm import tqdm
+from functools import partial
+from multiprocessing.pool import ThreadPool
 
 def build_command(input_file, output_file, vocab_file="/root/work/bert/jamodel/vocab.txt"):
     cmd = ["python","/root/work/bert/create_pretraining_data.py",
@@ -12,27 +14,48 @@ def build_command(input_file, output_file, vocab_file="/root/work/bert/jamodel/v
     result = check_output(cmd)
     return result
 
+
 def execute(i, input_dir, output_dir, vocab_file):
     try:
         datanum = str(i).rjust(6, '0')
         input_file = os.path.join(input_dir, "text.txt_{}".format(datanum))
         output_file = os.path.join(output_dir, "tf_examples.tf_record_{}".format(datanum))
-        build_command(input_file, output_file, vocab_file)
-        print(str(i), end=' ', flush=True)
+        if os.path.exists(output_file):
+            return None
+        else:
+            build_command(input_file, output_file, vocab_file)
+            print(str(i), end=' ', flush=True)
     except:
         print("Error:"+str(i), end=' ', flush=True)
 
 
-
-def main(input_dir, output_dir, vocab_file, datasize=999425):
-    from multiprocessing.pool import ThreadPool
-    from functools import partial
-    func = partial(execute,
+def execute_them(ds, input_dir, output_dir, vocab_file, poolsize=10):
+    try:
+        pool = ThreadPool(poolsize)
+        func = partial(execute,
             input_dir=input_dir,
             output_dir=output_dir,
             vocab_file=vocab_file)
-    pool = ThreadPool(100)
-    pool.map(func, list(range(datasize)))
+
+        pool.map(func, ds)
+    except Exception as e:
+        print(e)
+        print("Error in pool")
+        
+
+def main(input_dir, output_dir, vocab_file, datasize=999425):
+    from multiprocessing import Pool
+    import numpy as np
+
+    poolsize = 5
+    targets = np.split(np.array(list(range(datasize))), 5)
+    
+    func = partial(execute_them,
+            input_dir=input_dir,
+            output_dir=output_dir,
+            vocab_file=vocab_file)
+    pool = Pool(5)
+    pool.map(func, targets)
 
 
 if __name__ == "__main__":
