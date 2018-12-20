@@ -1,5 +1,5 @@
 # BERT experiments
-
+FIXED something
 original version is this: https://github.com/google-research/bert
 
 First, I needed to apply them for Japanese sentences, so prepared a data called JAS.
