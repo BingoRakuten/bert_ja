@@ -4,8 +4,8 @@ from tqdm import tqdm
 from functools import partial
 from multiprocessing.pool import ThreadPool
 
-def build_command(input_file, output_file, vocab_file="/root/work/bert/jamodel/vocab.txt"):
-    cmd = ["python","/root/work/bert/create_pretraining_data.py",
+def build_command(input_file, output_file, vocab_file="/home/ubuntu/songyang/google/bert_ja/jamodel/vocab.txt"):
+    cmd = ["python","/home/ubuntu/songyang/google/bert_ja/create_pretraining_data.py",
            "--input_file={}".format(input_file),
            "--output_file={}".format(output_file),
            "--vocab_file={}".format(vocab_file),
@@ -43,20 +43,20 @@ def execute_them(ds, input_dir, output_dir, vocab_file, poolsize=10):
         print("Error in pool")
         
 
-def main(input_dir, output_dir, vocab_file, datasize=999425):
+def main(input_dir, output_dir, vocab_file, datasize=1002856):
     from multiprocessing import Pool
     import numpy as np
 
-    poolsize = 5
-    targets = np.split(np.array(list(range(datasize))), 5)
+    poolsize = 8
+    targets = np.split(np.array(list(range(datasize))), 8)
     
     func = partial(execute_them,
             input_dir=input_dir,
             output_dir=output_dir,
             vocab_file=vocab_file)
-    pool = Pool(5)
+    pool = Pool(8)
     pool.map(func, targets)
 
 
 if __name__ == "__main__":
-    main("/root/work/data/txt_data/", "/root/work/data/records", "/root/work/bert/jamodel/vocab.txt")
+    main("/home/ubuntu/songyang/google/bert_ja/data_scripts/txt_data/", "/home/ubuntu/songyang/google/bert_ja/data/records", "/home/ubuntu/songyang/google/bert_ja/jamodel/vocab.txt")
